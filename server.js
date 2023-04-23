@@ -11,6 +11,15 @@ const app = express();
 app.get('/', (req,res) => {
     res.send('Welcome to an Awesome App about Breads!');
 });
+//bread ROUTES
+const breadsController = require('./controllers/bread_controller.js');
+app.use('/breads', breadsController)
+
+/* Note on what is happening in routes
+Express:
+localhost:3003/ = "Welcome to an Awesome App about Breads!"
+localhost:3003/breads/  = breadController   = "This is the index at /bread"
+*/
 
 //LISTEN
 app.listen(PORT,() => {
