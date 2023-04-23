@@ -8,12 +8,16 @@ const Default = (html) => {
             <head>
                 <title>Default</title>
                 <body>
-                    <h1>HTML Rendered!</h1>
-                    <div className="container"></div>
+                    <h1>
+                        HTML Rendered!
+                    </h1>
+                    <div className="container">
+                        {html.children}
+                    </div>
                 </body>
             </head>
         </html>
-    )
-}
+    );
+};
 
 module.exports = Default;
