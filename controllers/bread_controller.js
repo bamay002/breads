@@ -16,10 +16,15 @@ breads.get('/', (req,res) =>{
 //SHOW - READ ONE?
 breads.get('/:arraryIndex', (req,res) => {
     const arraryIndex = req.params.arraryIndex;
-    res.render("show", {
-        bread: breaD[arraryIndex]
-    })
+    if (breaD[arraryIndex]){
+        res.render("show", {
+            bread: breaD[arraryIndex]
+        })
+    } else {
+        res.send('404')
+    }
 })
+
 
 
 //EXPORT
