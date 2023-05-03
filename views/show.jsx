@@ -18,12 +18,14 @@ const Show =({bread , index}) => {
                 Contain Gluten.
             </p>
             <img width="480" src={bread.image} alt={bread.name} />
-            <li>
-                <a href='/breads'>Go To HomePage</a>
+            <li className='showbuttons'>
+                <a href='/breads'><button>Go To HomePage</button></a>
             </li> 
 
+            <a href={`/breads/${index}/edit`}><button>Edit</button></a>
+
             <form action={`/breads/${index}?_method=DELETE`} method='POST'>
-                <input type='submit' value='DELETE'></input>
+                <input className='showbuttons' type='submit' value='DELETE'></input>
                 </form>
         </Default>
     )

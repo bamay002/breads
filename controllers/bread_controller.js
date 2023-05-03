@@ -18,6 +18,14 @@ breads.get('/new', (req,res) => {
     res.render('new')
 })
 
+//EDIT
+breads.get('/:arrayIndex/edit', (req,res) => {
+    const arrayIndex = req.params.arrayIndex
+    res.render('edit', {
+        bread: breaD[arrayIndex],
+        index: arrayIndex,
+    })
+})
 
 //SHOW - READ ONE?
 breads.get('/:arrayIndex', (req,res) => {
@@ -52,6 +60,30 @@ breads.post('/', (req,res) => {
     }
 breaD.push(newBread)
 res.redirect('/breads')
+})
+
+//UPDATE
+breads.put('/:arrayIndex', (req, res) => {
+    const arrayIndex = req.params.arrayIndex
+    let updatedBread = {...req.body}
+
+    //Default Bread Image
+    if (updatedBread.image === ''){
+        updatedBread.image = 'https://cdn-tp4.mozu.com/27977-44902/cms/44902/files/202300002408.jpg'
+    }
+    // Process hasGluten Checkbox
+    if (updatedBread.hasGluten === 'on'){
+        updatedBread.hasGluten === true;
+    }
+    else if (updatedBread.hasGluten === 'off'){
+        updatedBread.hasGluten === false
+    }
+    else{
+        console.error('Error: hasGluten value is: ', updatedBread.hasGluten )
+    }
+
+    breaD[arrayIndex] = updatedBread
+    res.redirect(`/breads/${arrayIndex}`)
 })
 
 //DELETE
