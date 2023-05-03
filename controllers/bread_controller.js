@@ -25,6 +25,20 @@ breads.get('/:arraryIndex', (req,res) => {
     }
 })
 
+//CREATE
+breads.post('/', (req,res) => {
+    let newBread = {...req.body}
+    if (newBread.hasGluten === 'on'){
+        newBread.hasGluten = true
+    } else if (newBread.hasGluten === 'off'){
+        newBread.hasGluten = false
+    } else {
+        console.error('ERROR: Has Gluten value is: ', newBread.hasGluten)
+    }
+breaD.push(newBread)
+res.send(breaD)
+})
+
 
 
 //EXPORT
