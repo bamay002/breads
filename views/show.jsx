@@ -2,7 +2,7 @@ const React = require('react')
 const Default = require('./layout/default')
 
 //JSX Component
-const Show =({bread}) => {
+const Show =({bread , index}) => {
     //console.log(bread.name)
     return(
         <Default>
@@ -21,6 +21,10 @@ const Show =({bread}) => {
             <li>
                 <a href='/breads'>Go To HomePage</a>
             </li> 
+
+            <form action={`/breads/${index}?_method=DELETE`} method='POST'>
+                <input type='submit' value='DELETE'></input>
+                </form>
         </Default>
     )
 }

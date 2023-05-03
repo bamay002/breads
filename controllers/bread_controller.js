@@ -20,11 +20,12 @@ breads.get('/new', (req,res) => {
 
 
 //SHOW - READ ONE?
-breads.get('/:arraryIndex', (req,res) => {
-    const arraryIndex = req.params.arraryIndex;
-    if (breaD[arraryIndex]){
+breads.get('/:arrayIndex', (req,res) => {
+    const arrayIndex = req.params.arrayIndex;
+    if (breaD[arrayIndex]){
         res.render("show", {
-            bread: breaD[arraryIndex]
+            bread: breaD[arrayIndex],
+            index: arrayIndex,
         })
     } else {
         res.send('404')
@@ -51,6 +52,14 @@ breads.post('/', (req,res) => {
     }
 breaD.push(newBread)
 res.redirect('/breads')
+})
+
+//DELETE
+breads.delete('/:arrayIndex' , (req,res) => {
+    const arrayIndex = req.params.arrayIndex
+    breaD.splice(arrayIndex, 1)
+    res.status(303).redirect('/breads')
+
 })
 
 
