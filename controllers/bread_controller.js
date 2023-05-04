@@ -6,11 +6,11 @@ const breaD = require('../models/bread.js');
 //INDEX - READ ALL
 
 breads.get('/', (req,res) =>{
-    //res.send(breaD);
-    res.render('index', 
-    {
-        breads: breaD,
-    });
+    breaD.find().then(foundBreads => {
+        res.render('index', {
+            breads: foundBreads,
+        }); 
+    })
 })
 
 //NEW
@@ -28,8 +28,26 @@ breads.get('/:arrayIndex/edit', (req,res) => {
 })
 
 //SHOW - READ ONE?
-breads.get('/:arrayIndex', (req,res) => {
-    const arrayIndex = req.params.arrayIndex;
+breads.get('/:id', (req,res) => {
+    const id = req.params.id
+    breaD.findById(id)
+        .then((foundBread) => {
+            if (foundBread === null){
+                res.send('404 - Bread not found')
+            } else{
+            res.render('show', {
+                bread: foundBread
+            })
+        }
+        })
+        .catch((err) => {
+            res.send('500 - Service Error')
+        })  
+})
+
+
+
+ /*   const arrayIndex = req.params.arrayIndex;
     if (breaD[arrayIndex]){
         res.render("show", {
             bread: breaD[arrayIndex],
@@ -38,7 +56,7 @@ breads.get('/:arrayIndex', (req,res) => {
     } else {
         res.send('404')
     }
-})
+})      */
 
 
 //CREATE
@@ -47,7 +65,7 @@ breads.post('/', (req,res) => {
 
     //Default bread image
     if (newBread.image === ''){
-        newBread.image = 'https://cdn-tp4.mozu.com/27977-44902/cms/44902/files/202300002408.jpg'
+        newBread.image = undefined
     }
 
     //Process hasGluten checkbox
@@ -58,7 +76,7 @@ breads.post('/', (req,res) => {
     } else {
         console.error('ERROR: Has Gluten value is: ', newBread.hasGluten)
     }
-breaD.push(newBread)
+breaD.create(newBread)
 res.redirect('/breads')
 })
 
