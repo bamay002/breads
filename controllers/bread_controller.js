@@ -37,7 +37,8 @@ breads.get('/:id', (req,res) => {
             if (foundBread === null){
                 res.send('404 - Bread not found')
             } else{
-            res.render('show', {
+                console.log(foundBread.getBakedby())
+                res.render('show', {
                 bread: foundBread
             })
         }
@@ -46,7 +47,6 @@ breads.get('/:id', (req,res) => {
             res.send('500 - Service Error')
         })  
 })
-
 
 
  /*   const arrayIndex = req.params.arrayIndex;

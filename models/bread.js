@@ -15,6 +15,11 @@ const breadSchema = new Schema({
   }
 })
 
+//HELPER METHODS
+breadSchema.methods.getBakedby = function() {
+  return `${this.name} was baked with ♡ by ${this.baker || 'an unknown baker'}`
+}
+
 //create bread modle
 const breaD = mongoose.model('Bread', breadSchema)
 
