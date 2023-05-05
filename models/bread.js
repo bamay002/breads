@@ -8,7 +8,11 @@ const { Schema } = mongoose;
 const breadSchema = new Schema({
   name: { type: String, required: true },
   hasGluten: { type: Boolean },
-  image: { type: String, default: 'https://cdn-tp4.mozu.com/27977-44902/cms/44902/files/202300002408.jpg' }
+  image: { type: String, default: 'https://cdn-tp4.mozu.com/27977-44902/cms/44902/files/202300002408.jpg' },
+  baker: {
+    type: String,
+    enum: ['Brenda', 'Ernesto', 'Mia', 'Titi', 'Luz', 'Teddy']
+  }
 })
 
 //create bread modle

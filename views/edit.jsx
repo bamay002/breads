@@ -17,6 +17,16 @@ const Edit  = ({bread}) => {
                     &nbsp; Has Gluten? 
                 </label>
 
+                <label htmlFor='baker'>Baker</label>
+                <select name='baker' id='baker' defaultValue={bread.baker}>
+                    <option value='Brenda'>Brenda</option>
+                    <option value='Ernesto'>Ernesto</option>
+                    <option value='Mia'>Mia</option>
+                    <option value='Titi'>Titi</option>
+                    <option value='Luz'>Luz</option>
+                    <option value='Teddy'>Teddy</option>
+                </select>
+
                 < br />
 
                 <input type='submit'></input>

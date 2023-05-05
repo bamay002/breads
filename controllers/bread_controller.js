@@ -21,6 +21,7 @@ breads.get('/new', (req,res) => {
 //EDIT
 breads.get('/:id/edit', (req,res) => {
     const id = req.params.id
+
     breaD.findById(id).then(foundBread => {
         res.render('edit', {
             bread: foundBread
@@ -28,7 +29,7 @@ breads.get('/:id/edit', (req,res) => {
     })
 })
 
-//SHOW - READ ONE?
+//SHOW - READ ONE
 breads.get('/:id', (req,res) => {
     const id = req.params.id
     breaD.findById(id)
@@ -92,13 +93,10 @@ breads.put('/:id', (req, res) => {
     }
     // Process hasGluten Checkbox
     if (updatedBread.hasGluten === 'on'){
-        updatedBread.hasGluten === true;
+        updatedBread.hasGluten = true;
     }
-    else if (updatedBread.hasGluten === 'off'){
-        updatedBread.hasGluten === false
-    }
-    else{
-        console.error('Error: hasGluten value is: ', updatedBread.hasGluten )
+    else {
+        updatedBread.hasGluten = false
     }
 
     breaD.findByIdAndUpdate(id, updatedBread, { new: true }).then(updatedBread => {
