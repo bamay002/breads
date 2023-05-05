@@ -105,11 +105,11 @@ breads.put('/:arrayIndex', (req, res) => {
 })
 
 //DELETE
-breads.delete('/:arrayIndex' , (req,res) => {
-    const arrayIndex = req.params.arrayIndex
-    breaD.splice(arrayIndex, 1)
+breads.delete('/:id' , (req,res) => {
+    const id = req.params.id
+    breaD.findByIdAndDelete(id).then(deletedBread =>{
     res.status(303).redirect('/breads')
-
+    })
 })
 
 
