@@ -19,11 +19,12 @@ breads.get('/new', (req,res) => {
 })
 
 //EDIT
-breads.get('/:arrayIndex/edit', (req,res) => {
-    const arrayIndex = req.params.arrayIndex
-    res.render('edit', {
-        bread: breaD[arrayIndex],
-        index: arrayIndex,
+breads.get('/:id/edit', (req,res) => {
+    const id = req.params.id
+    breaD.findById(id).then(foundBread => {
+        res.render('edit', {
+            bread: foundBread
+        })
     })
 })
 
@@ -81,8 +82,8 @@ res.redirect('/breads')
 })
 
 //UPDATE
-breads.put('/:arrayIndex', (req, res) => {
-    const arrayIndex = req.params.arrayIndex
+breads.put('/:id', (req, res) => {
+    const id = req.params.id
     let updatedBread = {...req.body}
 
     //Default Bread Image
@@ -100,8 +101,10 @@ breads.put('/:arrayIndex', (req, res) => {
         console.error('Error: hasGluten value is: ', updatedBread.hasGluten )
     }
 
-    breaD[arrayIndex] = updatedBread
-    res.redirect(`/breads/${arrayIndex}`)
+    breaD.findByIdAndUpdate(id, updatedBread, { new: true }).then(updatedBread => {
+        console.log(updatedBread)
+        res.redirect(`/breads/${id}`)
+    })
 })
 
 //DELETE
