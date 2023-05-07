@@ -4,6 +4,7 @@ const Default = require('./layout/default')
 const bakerShow = ({ baker }) => {
     return (
         <Default>
+            <h2>Baker Show Page</h2>
             <h3>{baker.name}</h3>
             <p>{baker.name} has been baking with us since {baker.startDate.getFullYear()}</p>
             <p>About {baker.name}: {baker.bio}</p>
