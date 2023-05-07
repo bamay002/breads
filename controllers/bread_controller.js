@@ -7,10 +7,15 @@ const Baker = require('../models/baker.js')
 //INDEX - READ ALL
 
 breads.get('/', (req,res) =>{
-    breaD.find().then(foundBreads => {
-        res.render('index', {
-            breads: foundBreads,
+    Baker.find()
+    .then(foundBakers => {
+        breaD.find()
+            .then(foundBreads => {
+                res.render('index', {
+                    breads: foundBreads,
+                    bakers: foundBakers
         }); 
+    })  
     })
 })
 
