@@ -18,7 +18,7 @@ const Show =({bread}) => {
                 Contain Gluten.
             </p>
             <img width="480" src={bread.image} alt={bread.name} />
-            <p>{bread.getBakedby()}</p>
+            <p>{bread.getBakedBy()}</p>
             
             <li className='showbuttons'>
                 <a href='/breads'><button>Go To HomePage</button></a>

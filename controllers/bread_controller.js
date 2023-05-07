@@ -28,9 +28,13 @@ breads.get('/new', (req,res) => {
 breads.get('/:id/edit', (req,res) => {
     const id = req.params.id
 
-    breaD.findById(id).then(foundBread => {
-        res.render('edit', {
-            bread: foundBread
+    Baker.find()
+        .then(foundBakers => {
+            breaD.findById(id).then(foundBread => {
+                res.render('edit', {
+                    bread: foundBread,
+                    bakers: foundBakers
+                })
         })
     })
 })
@@ -39,18 +43,19 @@ breads.get('/:id/edit', (req,res) => {
 breads.get('/:id', (req,res) => {
     const id = req.params.id
     breaD.findById(id)
+        .populate('baker')
         .then((foundBread) => {
             if (foundBread === null){
                 res.send('404 - Bread not found')
             } else{
-                console.log(foundBread.getBakedby())
+                console.log(foundBread.getBakedBy())
                 res.render('show', {
                 bread: foundBread
             })
         }
-        })
+        }) 
         .catch((err) => {
-            res.send('500 - Service Error')
+            res.send('500 - Service Error') 
         })  
 })
 
