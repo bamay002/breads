@@ -25,9 +25,10 @@ bakerSchema.virtual('breads', {
 })
 
 //hooks
-bakerSchema.post('findOneAndDelete', function () {
-    breaD.deleteMany({ baker: this._conditions._id })
-        .then(deleteStatus => {
+bakerSchema.post('findOneAndDelete', (deleteBaker) => {
+    console.log(deleteBaker)
+    breaD.deleteMany({ baker: deleteBaker._id })
+        .then((deleteStatus) => {
             console.log(deleteStatus)
         })
 })
