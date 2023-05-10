@@ -20,6 +20,12 @@ const bakerShow = ({ baker }) => {
                     })
                 }
             </ul>
+
+            <br></br>
+
+            <form action={`/bakers/${baker.id}?_method=DELETE`} method='POST'>
+                <input type='submit' value='DELETE'></input>
+            </form>
         </Default>
     )
 }
